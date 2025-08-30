@@ -8,6 +8,16 @@ spring:
     nacos:
       discovery:
         server-addr: localhost:8848
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/service-map
+    username: root
+    password: 123456
+amp:
+  api:
+    key: 987f599c4ae049a884ebc43c472601e5
+
+
 
 
 

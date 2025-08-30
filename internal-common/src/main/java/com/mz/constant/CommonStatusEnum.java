@@ -18,13 +18,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 public enum CommonStatusEnum {
+    /*验证码错误*/
     VERIFICATION_CODE_ERROR(1099,"验证码不正确"),
+    /*token错误*/
     TOKEN_ERROR(1199,"token错误"),
     /*
     * 用户不存在*/
     USER_NOT_EXIST(1200,"用户不存在"),
-    success(1,"success"),
-    fail(0,"fail");
+    /*计价服务为空*/
+    PRICE_RULE_EMPTY(1399,"计价服务为空"),
+    /*地图字典错误*/
+    MAP_ERROR(1499,"地图字典错误"),
+    SUCCESS(1,"success"),
+    FAIL(0,"fail");
     @Getter
     private int  code;
     @Getter

@@ -22,11 +22,11 @@ public class ResponseResult<T>{
     private T data;
 
     public static <T> ResponseResult success(){
-        return new ResponseResult().setCode(CommonStatusEnum.success.getCode()).setMessage(CommonStatusEnum.success.getMessage());
+        return new ResponseResult().setCode(CommonStatusEnum.SUCCESS.getCode()).setMessage(CommonStatusEnum.SUCCESS.getMessage());
 
     }
     public static <T> ResponseResult success(T data){
-        return new ResponseResult().setCode(CommonStatusEnum.success.getCode()).setMessage(CommonStatusEnum.success.getMessage()).setData(data);
+        return new ResponseResult().setCode(CommonStatusEnum.SUCCESS.getCode()).setMessage(CommonStatusEnum.SUCCESS.getMessage()).setData(data);
 
     }
    public static <T> ResponseResult fail(int code ,String message ,T data){

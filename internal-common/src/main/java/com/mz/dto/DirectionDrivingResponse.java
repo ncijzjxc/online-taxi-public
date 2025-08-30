@@ -1,6 +1,8 @@
 package com.mz.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @Auther: mz
@@ -9,6 +11,8 @@ import lombok.Data;
  * @version: 6.0
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class DirectionDrivingResponse {
     private Integer distance;
     private Integer duration;

@@ -1,5 +1,6 @@
 package com.mz.remote;
 
+import com.mz.dto.DirectionDrivingResponse;
 import com.mz.dto.ForecastPriceDto;
 import com.mz.dto.ResponseResult;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -16,5 +17,5 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @FeignClient("service-map")
 public interface ServiceMapClient {
     @RequestMapping(method = RequestMethod.GET, value = "/direction/driving")
-    public ResponseResult getPrice(@RequestBody ForecastPriceDto forecastPriceDto);
+    public ResponseResult<DirectionDrivingResponse> getDistanceAndDuration(@RequestBody ForecastPriceDto forecastPriceDto);
 }
