@@ -2,8 +2,19 @@ server:
   port: 8088
 spring:
   application:
-    name: api-boss
+    name: api-driver
   cloud:
     nacos:
       discovery:
         server-addr: localhost:8848
+  redis:
+    host: localhost
+    port: 6379
+    database: 0
+    timeout: 2000ms
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: -1ms
+        max-idle: 8
+        min-idle: 0

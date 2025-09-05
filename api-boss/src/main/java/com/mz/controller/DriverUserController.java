@@ -1,8 +1,6 @@
 package com.mz.controller;
 
-import com.mz.dto.DirectionDrivingResponse;
-import com.mz.dto.DriverUser;
-import com.mz.dto.ResponseResult;
+import com.mz.dto.*;
 import com.mz.service.DriverUserService;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.json.JSONObject;
@@ -33,5 +31,18 @@ public class DriverUserController {
     public ResponseResult updateDriverUser(@RequestBody DriverUser driverUser){
         log.info(JSONObject.fromObject(driverUser).toString());
         return  driverUserService.updateDriverUser(driverUser);
+    }
+    @PostMapping("/car")
+    public ResponseResult addCar(@RequestBody Car car){
+        return driverUserService.addCar(car);
+    }
+
+    @PostMapping("/driver-car-binding-relationship/bind")
+    public ResponseResult bind(@RequestBody DriverCarBindingRelationship driverCarBindingRelationship){
+        return  driverUserService.bind(driverCarBindingRelationship);
+    }
+    @PostMapping("/driver-car-binding-relationship/unbind")
+    public ResponseResult unbind(@RequestBody DriverCarBindingRelationship driverCarBindingRelationship){
+        return  driverUserService.unbind(driverCarBindingRelationship);
     }
 }

@@ -1,5 +1,7 @@
 package com.mz.remote;
 
+import com.mz.dto.Car;
+import com.mz.dto.DriverCarBindingRelationship;
 import com.mz.dto.DriverUser;
 import com.mz.dto.ResponseResult;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -19,4 +21,11 @@ public interface ServiceUserClient {
     public ResponseResult addDriverUser(@RequestBody DriverUser driverUser);
     @RequestMapping(method = RequestMethod.PUT,value = "/user")
     public ResponseResult updateDriverUser(@RequestBody DriverUser driverUser);
+    @RequestMapping(method = RequestMethod.POST,value = "/car")
+    public ResponseResult addCar(@RequestBody Car car);
+    @RequestMapping(method = RequestMethod.POST,value = "/driver-car-binding-relationship/bind")
+    public ResponseResult bind(@RequestBody DriverCarBindingRelationship driverCarBindingRelationship);
+
+    @RequestMapping(method = RequestMethod.POST,value = "/driver-car-binding-relationship/unbind")
+    public ResponseResult unbind(@RequestBody DriverCarBindingRelationship driverCarBindingRelationship);
 }

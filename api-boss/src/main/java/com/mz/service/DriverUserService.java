@@ -1,5 +1,7 @@
 package com.mz.service;
 
+import com.mz.dto.Car;
+import com.mz.dto.DriverCarBindingRelationship;
 import com.mz.dto.DriverUser;
 import com.mz.dto.ResponseResult;
 import com.mz.remote.ServiceUserClient;
@@ -17,13 +19,23 @@ public class DriverUserService {
     @Autowired
     ServiceUserClient serviceUserClient;
     public ResponseResult addDriverUser(DriverUser driverUser){
-        serviceUserClient.addDriverUser(driverUser);
-        return ResponseResult.success();
+        return serviceUserClient.addDriverUser(driverUser);
     }
 
     public ResponseResult updateDriverUser(DriverUser driverUser){
-        serviceUserClient.updateDriverUser(driverUser);
-        return ResponseResult.success();
+        return  serviceUserClient.updateDriverUser(driverUser);
+    }
+
+    public ResponseResult addCar(Car car){
+        return  serviceUserClient.addCar(car);
+    }
+
+    public ResponseResult bind(DriverCarBindingRelationship driverCarBindingRelationship){
+        return  serviceUserClient.bind(driverCarBindingRelationship);
+    }
+
+    public ResponseResult unbind(DriverCarBindingRelationship driverCarBindingRelationship){
+        return serviceUserClient.unbind(driverCarBindingRelationship);
     }
 
 }

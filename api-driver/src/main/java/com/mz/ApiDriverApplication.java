@@ -14,8 +14,8 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableFeignClients
-public class ApiBossApplication {
+public class ApiDriverApplication {
     public static void main(String[] args) {
-        SpringApplication.run(ApiBossApplication.class,args);
+        SpringApplication.run(ApiDriverApplication.class,args);
     }
 }

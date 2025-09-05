@@ -1,0 +1,35 @@
+服务管理：
+{
+    "errcode": 10000,
+    "errmsg": "OK",
+    "data": {
+        "name": "网约车service",
+        "sid": 1052646
+    }
+}
+创建终端：
+{
+    "errcode": 10000,
+    "errmsg": "OK",
+    "data": {
+        "name": "车辆2",
+        "tid": 1466316658,
+        "sid": 1052646
+    }
+}
+
+{
+    "errcode": 10000,
+    "errmsg": "OK",
+    "data": {
+        "name": "001",
+        "tid": 1466343961,
+        "sid": 1052646
+    }
+}
+{
+    "code": 1,
+    "message": "success",
+    "data": "1052845"
+}
+

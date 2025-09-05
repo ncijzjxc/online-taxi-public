@@ -21,7 +21,6 @@ public class ApiDriverController {
 
     @PutMapping("/user")
     public ResponseResult updateDriverUser(@RequestBody DriverUser driverUser){
-        apiDriverService.updateDriverUser(driverUser);
-        return ResponseResult.success();
+        return apiDriverService.updateDriverUser(driverUser);
     }
 }

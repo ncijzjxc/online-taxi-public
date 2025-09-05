@@ -27,7 +27,7 @@ public class MapDirectionClient {
     @Autowired
     RestTemplate restTemplate;
 
-    @Value("${map.api.key}")
+    @Value("${amp.api.key}")
     private String key;
     public DirectionDrivingResponse direction(String depLongitude, String depLatitude, String destLongitude, String destLatitude){
         // 组装url

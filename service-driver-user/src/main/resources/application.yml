@@ -5,11 +5,22 @@ spring:
   application:
     name: service-driver-user
   datasource:
-   driver-class-name: com.mysql.cj.jdbc.Driver
-   url: jdbc:mysql://localhost:3306/service-driver-user
-   username: root
-   password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/service-driver-user
+    username: root
+    password: 123456
   cloud:
     nacos:
       discovery:
         server-addr: localhost:8848
+  redis:
+    host: localhost
+    port: 6379
+    database: 0
+    timeout: 2000ms
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: -1ms
+        max-idle: 8
+        min-idle: 0

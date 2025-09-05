@@ -7,12 +7,12 @@ package com.mz.util;
  * @version: 6.0
  */
 public class RedisPrefixUtils {
-    private static  String   verifcationCodePrefix="passenger-verification-code:";
+    private static  String   verifcationCodePrefix="verification-code-";
     private static String  tokenPrefix="token-";
     /*
      * 生成获取验证码存入redis中的key*/
-    public static String generatorKeyByPhone(String passengerPhone){
-        return verifcationCodePrefix+passengerPhone;
+    public static String generatorKeyByPhone(String phone,String identity){
+        return verifcationCodePrefix+identity+"-"+phone;
 
     }
     /*

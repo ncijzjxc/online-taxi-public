@@ -2,7 +2,7 @@ package com.mz.service;
 
 import com.mz.dto.DriverUser;
 import com.mz.dto.ResponseResult;
-import com.mz.remote.ApiDriver;
+import com.mz.remote.ApiDriverClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,10 +18,10 @@ import java.time.LocalDateTime;
 @Service
 public class ApiDriverService {
     @Autowired
-    ApiDriver apiDriver;
+    ApiDriverClient apiDriverClient;
     public ResponseResult updateDriverUser(DriverUser driverUser){
         LocalDateTime localDateTime=LocalDateTime.now();
         driverUser.setGmtModified(localDateTime);
-        return  apiDriver.updateDriverUser(driverUser);
+        return  apiDriverClient.updateDriverUser(driverUser);
     }
 }

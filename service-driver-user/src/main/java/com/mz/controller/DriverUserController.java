@@ -4,10 +4,7 @@ import com.mz.dto.DriverUser;
 import com.mz.dto.ResponseResult;
 import com.mz.service.DriverUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @Auther: mz
@@ -26,6 +23,11 @@ public class DriverUserController {
     @PutMapping("/user")
     public ResponseResult updateDriverUser(@RequestBody DriverUser driverUser){
         return driverUserService.updateDriverUser(driverUser);
+    }
+    @GetMapping("/check-driver/{driverPhone}")
+    public ResponseResult isExists(@PathVariable("driverPhone")String driverPhone){
+
+        return driverUserService.getDriverUserByPhone(driverPhone);
     }
 
 }

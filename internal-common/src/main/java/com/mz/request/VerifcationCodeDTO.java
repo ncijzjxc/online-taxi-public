@@ -9,5 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class VerifcationCodeDTO {
     private String passengerPhone;
+
     private String  numberCode;
+
+    private String driverPhone;
 }
