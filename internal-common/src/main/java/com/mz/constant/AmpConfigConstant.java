@@ -38,5 +38,6 @@ public class AmpConfigConstant {
     public static final String STREET="street";
     public static final Integer DRIVER_EXISTS=1;
     public static final Integer DRIVER_NO_EXISTS=2;
+    public static final String DEVICE_C0DE="deviceCode";
 
 }

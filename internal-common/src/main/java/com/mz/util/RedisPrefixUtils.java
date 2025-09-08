@@ -9,6 +9,7 @@ package com.mz.util;
 public class RedisPrefixUtils {
     private static  String   verifcationCodePrefix="verification-code-";
     private static String  tokenPrefix="token-";
+    public static String deviceCode="deviceCode-";
     /*
      * 生成获取验证码存入redis中的key*/
     public static String generatorKeyByPhone(String phone,String identity){

@@ -10,4 +10,6 @@ import com.mz.dto.DriverUser;
  * @version: 6.0
  */
 public interface DriverUserMapper  extends BaseMapper<DriverUser> {
+
+    public int checkCityDriver(String cityCode);
 }

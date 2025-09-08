@@ -1,5 +1,6 @@
 package com.mz.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.mz.constant.CommonStatusEnum;
 import com.mz.dto.DirectionDrivingResponse;
@@ -48,10 +49,13 @@ public class ForecastPriceService {
         Integer duration = distanceAndDuration.getData().getDuration();
 
         log.info("查询计价规则 ");
-        Map<String ,Object> map=new HashMap<>();
-        map.put("city_code","11000");
-        map.put("vehicle_type","1");
-        List<PriceRule> priceRules = priceRuleMapper.selectByMap(map);
+
+        QueryWrapper<PriceRule> queryWrapper =new QueryWrapper();
+        queryWrapper.eq("city_code",forecastPriceDto.getCityCode());
+        queryWrapper.eq("vehicle_type",forecastPriceDto.getVehicleType());
+        queryWrapper.orderByDesc("fare_version");
+
+        List<PriceRule> priceRules = priceRuleMapper.selectList(queryWrapper);
         if(priceRules.isEmpty()){
         return ResponseResult.fail(CommonStatusEnum.PRICE_RULE_EMPTY.getCode(),CommonStatusEnum.PRICE_RULE_EMPTY.getMessage());
         }
@@ -61,6 +65,8 @@ public class ForecastPriceService {
 
         ForecastPriceResponse forecastPriceResponse=new ForecastPriceResponse();
         forecastPriceResponse.setPrice(price);
+        forecastPriceResponse.setCityCode(priceRule.getCityCode());
+        forecastPriceResponse.setVehicleType(priceRule.getVehicleType());
         return ResponseResult.success(forecastPriceResponse);
     }
     private  static Double getPrice(Integer distance ,Integer duration,PriceRule priceRule){

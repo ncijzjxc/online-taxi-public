@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 public class ForecastPriceService {
     @Autowired
     ServicePriceClient servicePriceClient;
-    public ResponseResult getPriceByMap(String depLongitude,String depLatitude,String destLongitude,String destLatitude){
+    public ResponseResult getPriceByMap(String depLongitude,String depLatitude,String destLongitude,String destLatitude,String cityCode,String vehicleType){
         log.info("出发地经度："+depLongitude);
         log.info("出发地维度："+ depLatitude);
         log.info("目的地经度："+destLongitude);
@@ -29,13 +29,19 @@ public class ForecastPriceService {
         forecastPriceDto.setDepLatitude(depLatitude);
         forecastPriceDto.setDepLongitude(depLongitude);
         forecastPriceDto.setDestLatitude(destLatitude);
+        forecastPriceDto.setCityCode(cityCode);
+        forecastPriceDto.setVehicleType(vehicleType);
 
         log.info("调用计价服务：");
         ResponseResult<ForecastPriceResponse> forecast = servicePriceClient.forecast(forecastPriceDto);
         Double price = forecast.getData().getPrice();
+        String code = forecast.getData().getCityCode();
+        String type = forecast.getData().getVehicleType();
 
         ForecastPriceResponse forecastPriceResponse=new ForecastPriceResponse();
         forecastPriceResponse.setPrice(price);
+        forecastPriceResponse.setCityCode(code);
+        forecastPriceResponse.setVehicleType(type);
         return ResponseResult.success(forecastPriceResponse);
     }
 }
