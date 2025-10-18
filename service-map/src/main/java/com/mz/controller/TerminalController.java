@@ -2,12 +2,10 @@ package com.mz.controller;
 
 import com.mz.dto.ResponseResult;
 import com.mz.dto.TerminalResponse;
+import com.mz.response.TrsearchResponse;
 import com.mz.service.TerminalService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @Auther: mz
@@ -28,5 +26,9 @@ public class TerminalController {
     @PostMapping("/aroundSearch")
     public ResponseResult<TerminalResponse> aroundSearch(@RequestParam String center, @RequestParam Integer radius){
         return terminalService.aroundSearch(center,radius);
+    }
+    @PostMapping("/trsearch")
+    public ResponseResult<TrsearchResponse> trsearch(@RequestParam String tid, @RequestParam Long starttime, @RequestParam Long endtime){
+        return terminalService.trsearch(tid,starttime,endtime);
     }
 }

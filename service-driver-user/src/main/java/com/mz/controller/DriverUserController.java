@@ -2,6 +2,7 @@ package com.mz.controller;
 
 import com.mz.dto.DriverUser;
 import com.mz.dto.ResponseResult;
+import com.mz.response.OrderDriverResponse;
 import com.mz.service.DriverUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +29,10 @@ public class DriverUserController {
     public ResponseResult isExists(@PathVariable("driverPhone")String driverPhone){
 
         return driverUserService.getDriverUserByPhone(driverPhone);
+    }
+    @GetMapping("/get-available-driver/{carId}")
+    public ResponseResult<OrderDriverResponse>  availableDriver(@PathVariable("carId") Long carId){
+        return driverUserService.availableDriver(carId);
     }
 
 }

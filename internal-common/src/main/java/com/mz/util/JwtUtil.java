@@ -42,7 +42,6 @@ public class JwtUtil {
         map.forEach((k,v)->{
             builder.withClaim(k,v);
        });
-        //将日期加入jwt;
         //builder.withExpiresAt(date);
         String sign = builder.sign(Algorithm.HMAC256(SIGN));
         System.out.println("生成的Token:"+sign);

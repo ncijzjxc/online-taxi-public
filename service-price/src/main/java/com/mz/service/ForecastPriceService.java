@@ -67,6 +67,7 @@ public class ForecastPriceService {
         forecastPriceResponse.setPrice(price);
         forecastPriceResponse.setCityCode(priceRule.getCityCode());
         forecastPriceResponse.setVehicleType(priceRule.getVehicleType());
+        forecastPriceResponse.setFareVersion(priceRule.getFareVersion());
         return ResponseResult.success(forecastPriceResponse);
     }
     private  static Double getPrice(Integer distance ,Integer duration,PriceRule priceRule){
