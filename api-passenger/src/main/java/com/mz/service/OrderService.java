@@ -19,4 +19,8 @@ public class OrderService {
     public ResponseResult addOrder(OrderRequest orderRequest){
         return serviceOrderClient.addOrder(orderRequest);
     }
+
+    public ResponseResult cancel(String orderId, String identity) {
+        return serviceOrderClient.cancel(orderId,identity);
+    }
 }

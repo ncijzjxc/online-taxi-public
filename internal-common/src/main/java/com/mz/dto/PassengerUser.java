@@ -13,7 +13,7 @@ import java.util.Date;
  */
 @Data
 
-public class PassengerUser implements Serializable {
+public class  PassengerUser implements Serializable {
     private static final long serialVersionUID = -75538538616259779L;
 
     private Long id;

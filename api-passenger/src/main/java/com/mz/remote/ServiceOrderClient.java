@@ -11,8 +11,12 @@ import org.springframework.web.bind.annotation.*;
  * @Description: com.mz.remote
  * @version: 6.0
  */
-@FeignClient("service-map")
+@FeignClient("service-order")
 public interface ServiceOrderClient {
     @RequestMapping(method = RequestMethod.POST,value = "/order/add")
     public ResponseResult addOrder(@RequestBody OrderRequest orderRequest);
+    /*乘客取消订单*/
+
+    @RequestMapping(method = RequestMethod.POST,value = "/order/cancel")
+    public ResponseResult cancel(@RequestParam String orderId,@RequestParam String identity);
 }

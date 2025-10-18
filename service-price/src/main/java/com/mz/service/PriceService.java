@@ -1,29 +1,20 @@
 package com.mz.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.extension.api.R;
 import com.mz.constant.CommonStatusEnum;
-import com.mz.dto.DirectionDrivingResponse;
-import com.mz.dto.ForecastPriceDto;
-import com.mz.dto.PriceRule;
-import com.mz.dto.ResponseResult;
+import com.mz.dto.*;
 
 import com.mz.mapper.PriceRuleMapper;
 import com.mz.remote.ServiceMapClient;
 import com.mz.response.ForecastPriceResponse;
 
 import lombok.extern.slf4j.Slf4j;
-import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sun.util.calendar.LocalGregorianCalendar;
 
-import java.lang.reflect.ParameterizedType;
+import java.io.PipedReader;
 import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static java.math.BigDecimal.ROUND_HALF_UP;
 
@@ -35,12 +26,12 @@ import static java.math.BigDecimal.ROUND_HALF_UP;
  */
 @Service
 @Slf4j
-public class ForecastPriceService {
+public class PriceService {
     @Autowired
     ServiceMapClient serviceMapClient;
     @Autowired
     PriceRuleMapper priceRuleMapper;
-
+    /*预估价格*/
     public ResponseResult getPriceByMap( ForecastPriceDto forecastPriceDto){
 
         log.info("查询地图服务：");
@@ -67,8 +58,28 @@ public class ForecastPriceService {
         forecastPriceResponse.setPrice(price);
         forecastPriceResponse.setCityCode(priceRule.getCityCode());
         forecastPriceResponse.setVehicleType(priceRule.getVehicleType());
+        forecastPriceResponse.setFareVersion(priceRule.getFareVersion());
         return ResponseResult.success(forecastPriceResponse);
     }
+    /*实际价格*/
+
+    public ResponseResult getCalculatePrice(PriceDto priceDto){
+        QueryWrapper<PriceRule> queryWrapper =new QueryWrapper();
+        queryWrapper.eq("city_code",priceDto.getAddress());
+        queryWrapper.eq("vehicle_type",priceDto.getVehicleType());
+        queryWrapper.orderByDesc("fare_version");
+
+        List<PriceRule> priceRules = priceRuleMapper.selectList(queryWrapper);
+        if(priceRules.isEmpty()){
+            return ResponseResult.fail(CommonStatusEnum.PRICE_RULE_EMPTY.getCode(),CommonStatusEnum.PRICE_RULE_EMPTY.getMessage());
+        }
+        PriceRule priceRule = priceRules.get(0);
+        Integer distance=priceDto.getDistance();
+        Integer  duration=priceDto.getTime();
+        Double price = getPrice(distance, duration, priceRule);
+        return ResponseResult.success(price);
+    }
+    /*查询价格*/
     private  static Double getPrice(Integer distance ,Integer duration,PriceRule priceRule){
         //起步价格
         BigDecimal price=new BigDecimal(0);
@@ -100,16 +111,5 @@ public class ForecastPriceService {
         BigDecimal timeFare=timePriceDecimal.multiply(unitPricePerMinuteDecimal);
         price=price.add(timeFare);
         return price.doubleValue();
-    }
-
-    public static void main(String[] args) {
-        PriceRule rule=new PriceRule();
-        rule.setStartMile(3);
-        rule.setStartFare(5);
-        rule.setUnitPricePerMile(1.8);
-        rule.setUnitPricePerMinute(0.5);
-
-        Double price = getPrice(6000, 1800, rule);
-        System.out.println(price);
     }
 }

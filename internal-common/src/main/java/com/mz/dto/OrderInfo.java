@@ -45,6 +45,7 @@ public class OrderInfo implements Serializable {
      * 发起地行政区划代码
      */
     private String address;
+    /*车辆类别*/
     /**
      * 订单发起时间
      */

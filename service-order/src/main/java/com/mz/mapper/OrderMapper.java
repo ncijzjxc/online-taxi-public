@@ -9,5 +9,5 @@ import com.mz.dto.OrderInfo;
  * @Description: com.mz.mapper
  * @version: 6.0
  */
-public interface OrderMapper extends BaseMapper<OrderInfo> {
+public interface  OrderMapper extends BaseMapper<OrderInfo> {
 }

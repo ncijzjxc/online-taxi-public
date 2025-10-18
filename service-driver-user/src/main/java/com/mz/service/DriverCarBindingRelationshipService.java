@@ -28,8 +28,9 @@ import java.util.Map;
 public class DriverCarBindingRelationshipService {
     @Autowired
     DriverCarBindingRelationshipMapper driverCarBindingRelationshipMapper;
-
+    /*司机和车辆绑定关系*/
     public ResponseResult bind(DriverCarBindingRelationship driverCarBindingRelationship){
+        /*查询司机和车辆是否绑定*/
         QueryWrapper<DriverCarBindingRelationship> queryWrapper=new QueryWrapper<>();
         queryWrapper.eq("driver_id",driverCarBindingRelationship.getDriverId());
         queryWrapper.eq("car_id",driverCarBindingRelationship.getCarId());
@@ -39,7 +40,7 @@ public class DriverCarBindingRelationshipService {
             return ResponseResult.fail(CommonStatusEnum.DRIVER_CAR_BIND_EXISTS.getCode(),CommonStatusEnum.DRIVER_CAR_BIND_EXISTS.getMessage());
 
         }
-
+        /*查询司机是否绑定*/
         queryWrapper=new QueryWrapper<>();
         queryWrapper.eq("driver_id",driverCarBindingRelationship.getDriverId());
         queryWrapper.eq("bind_state",DriverCarConstant.DRIVER_CAR_BIND);
@@ -48,7 +49,7 @@ public class DriverCarBindingRelationshipService {
             return ResponseResult.fail(CommonStatusEnum.DRIVER_BIND_EXISTS.getCode(),CommonStatusEnum.DRIVER_BIND_EXISTS.getMessage());
 
         }
-
+        /*查询车辆是否绑定*/
         queryWrapper=new QueryWrapper<>();
         queryWrapper.eq("car_id",driverCarBindingRelationship.getCarId());
         queryWrapper.eq("bind_state",DriverCarConstant.DRIVER_CAR_BIND);
@@ -58,13 +59,16 @@ public class DriverCarBindingRelationshipService {
 
         }
 
-
+        /*开始绑定*/
         LocalDateTime localDateTime=LocalDateTime.now();
+        driverCarBindingRelationship.setDriverId(driverCarBindingRelationship.getDriverId());
+        driverCarBindingRelationship.setCarId(driverCarBindingRelationship.getCarId());
         driverCarBindingRelationship.setBindingTime(localDateTime);
         driverCarBindingRelationship.setBindState(DriverCarConstant.DRIVER_CAR_BIND);
         driverCarBindingRelationshipMapper.insert(driverCarBindingRelationship);
         return ResponseResult.success();
     }
+    /*司机和车辆解绑*/
 
     public ResponseResult unbind(DriverCarBindingRelationship driverCarBindingRelationship){
         LocalDateTime localDateTime=LocalDateTime.now();

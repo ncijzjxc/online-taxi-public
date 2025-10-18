@@ -4,9 +4,7 @@ import com.mz.dto.DriverUser;
 import com.mz.dto.ResponseResult;
 import com.mz.service.ApiDriverService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @Auther: mz

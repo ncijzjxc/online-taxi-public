@@ -1,8 +1,9 @@
 package com.mz.controller;
 
 import com.mz.dto.ForecastPriceDto;
+import com.mz.dto.PriceDto;
 import com.mz.dto.ResponseResult;
-import com.mz.service.ForecastPriceService;
+import com.mz.service.PriceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,11 +16,15 @@ import org.springframework.web.bind.annotation.RestController;
  * @version: 6.0
  */
 @RestController
-public class ForecastPriceController {
+public class PriceController {
     @Autowired
-    ForecastPriceService forecastPriceService;
+    PriceService priceService;
     @PostMapping("/forecast-price")
     public ResponseResult getPrice(@RequestBody ForecastPriceDto forecastPriceDto){
-        return forecastPriceService.getPriceByMap(forecastPriceDto);
+        return priceService.getPriceByMap(forecastPriceDto);
+    }
+    @PostMapping("/calculate-price")
+    public ResponseResult actualPrice(@RequestBody PriceDto priceDto){
+        return priceService.getCalculatePrice(priceDto);
     }
 }

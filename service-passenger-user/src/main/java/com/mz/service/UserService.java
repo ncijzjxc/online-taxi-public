@@ -3,7 +3,6 @@ package com.mz.service;
 import com.mz.constant.CommonStatusEnum;
 import com.mz.dto.ResponseResult;
 import com.mz.dto.PassengerUser;
-import com.mz.dto.UserResponse;
 import com.mz.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

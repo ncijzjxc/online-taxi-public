@@ -2,6 +2,7 @@ package com.mz.remote;
 
 import com.mz.dto.ForecastPriceDto;
 import com.mz.dto.OrderInfo;
+import com.mz.dto.PriceDto;
 import com.mz.dto.ResponseResult;
 import com.mz.response.ForecastPriceResponse;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -20,4 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public interface ServicePriceClient {
     @RequestMapping(method = RequestMethod.POST,value = "/forecast-price")
     public ResponseResult<ForecastPriceResponse> checkPrice(@RequestBody ForecastPriceDto forecastPriceDto);
+    @RequestMapping(method = RequestMethod.POST,value = "/calculate-price")
+    public ResponseResult<ForecastPriceResponse> calculatePrice(@RequestBody PriceDto priceDto);
 }

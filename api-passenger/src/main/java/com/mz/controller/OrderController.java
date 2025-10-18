@@ -4,10 +4,7 @@ import com.mz.dto.ResponseResult;
 import com.mz.request.OrderRequest;
 import com.mz.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @Auther: mz
@@ -23,5 +20,10 @@ public class OrderController {
     @PostMapping("/add")
     public ResponseResult add(@RequestBody OrderRequest orderRequest){
         return orderService.addOrder(orderRequest);
+    }
+    /*乘客取消订单*/
+    @PostMapping("/cancel")
+    public ResponseResult cancel(@RequestParam String orderId,@RequestParam String identity){
+        return orderService.cancel(orderId,identity);
     }
 }

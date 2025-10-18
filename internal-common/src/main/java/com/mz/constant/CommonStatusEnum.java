@@ -44,6 +44,9 @@ public enum CommonStatusEnum {
     PASSENGER_NO_ORDER(1601,"乘客有未完成的订单"),
     PASSENGER_IS_BLACk(1602,"乘客下单超过限制"),
 
+    NO_DRIVER_AVAILABLE(1603,"没有司机可用"),
+    CANCEL_FAIL(1604,"取消订单失败"),
+
     SUCCESS(1,"success"),
     FAIL(0,"fail");
     @Getter

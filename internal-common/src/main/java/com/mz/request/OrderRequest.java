@@ -38,12 +38,47 @@ public class OrderRequest {
     /*下单目的地纬度*/
     private String destLatitude;
     /*坐标加密*/
-    private Integer encrpt;
+    private Integer encrypt;
     /*编码方式*/
     private String fareType;
     /*计价版本*/
     private Integer fareVersion;
     /*用户设备唯一号*/
     private String deviceCode;
+    /*订单id*/
+    private String id;
+    /*司机接乘客时时间*/
+    private LocalDateTime toPickUpPassengerTime;
+    /*司机接乘客时纬度*/
+    private String toPickUpPassengerLatitude;
+    /*司机接乘客时经度*/
+    private String toPickUpPassengerLongitude;
+    /*司机接乘客时地址*/
+    private String toPickUpPassengerAddress;
+    /*司机接到乘客时的经度*/
+    private String pickUpPassengerLongitude;
+    /*司机接到乘客时的纬度*/
+    private String pickUpPassengerLatitude;
+    /**
+     * 乘客下车时间
+     */
+    private LocalDateTime passengerGetoffTime;
+    /**
+     * 乘客下车经度
+     */
+    private String passengerGetoffLongitude;
+    /**
+     * 乘客下车纬度
+     */
+    private String passengerGetoffLatitude;
+    /**
+     * 载客里程（米）
+     */
+    private Long driveMile;
+    /**
+     * 载客时间(分)
+     */
+    private Long driveTime;
+
 
 }
